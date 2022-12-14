@@ -12,11 +12,21 @@ using namespace std;
 const int _size = 6;
 class Commodity
 {
+protected:
+	string name_s;
+	double price;
+	double weight;
+	double all_price;
+	double your_weight = 0;
+	int day;
+	int month;
+	int years;
 public:
 	virtual void Print() = 0;
 	virtual void Show_Date() = 0;
 	virtual void Sale() = 0;
 	virtual void best_before_date(int now_day, int now_month) = 0;
+	friend ostream& operator<<(ostream& os, Commodity& sh);
 };
 
 class Product : public Commodity
@@ -29,6 +39,7 @@ public:
 	Product() { day = 0; }
 	Product(int day);
 	void Show_Date() override;
+	friend ostream& operator<<(ostream& os, Commodity& sh);
 };
 
 class Household_chemicals : public Commodity
@@ -41,16 +52,11 @@ public:
 	Household_chemicals() { day = month = 0; }
 	Household_chemicals (int day, int month);
 	void Show_Date() override;
+	friend ostream& operator<<(ostream& os, Commodity& sh);
 };
 
 class Tomatos : public Product
 {
-protected:
-	string name_s;
-	double price;
-	double weight;
-	double all_price;
-	double your_weight = 0;
 public:
 	Tomatos() { name_s = price = weight = 0; }
 	Tomatos(string name_s, double price, double weight);
@@ -62,30 +68,17 @@ public:
 
 class Cucumber : public Product
 {
-protected:
-	string name_s;
-	double price;
-	double weight;
-	double all_price;
-	double your_weight = 0;
-	void best_before_date(int now_day, int now_month) override;
-
 public:
 	Cucumber() { name_s = price = weight = 0; }
 	Cucumber(string name_s, double price, double weight);
 	void Print() override;
 	void Sale() override;
-	
+	void best_before_date(int now_day, int now_month) override;
+
 };
 
 class Salat : public Product
 {
-protected:
-	string name_s;
-	double price;
-	double weight;
-	double all_price;
-	double your_weight = 0;
 public:
 	Salat() { name_s = price = weight = 0; }
 	Salat(string name_s, double price, double weight);
@@ -96,15 +89,9 @@ public:
 
 class Shampoo : public Household_chemicals
 {
-protected:
-	string name_s;
-	double price;
-	int thing;
-	double all_price;
-	int your_thing = 0;
 public:
-	Shampoo() { name_s = price = thing = 0; }
-	Shampoo(string name_s, double price, int thing);
+	Shampoo() {}
+	Shampoo(string name_s, double price, double weight);
 	void Print() override;
 	void Sale() override;
 	void best_before_date(int now_day, int now_month) override;
@@ -113,15 +100,10 @@ public:
 
 class Soap : public Household_chemicals
 {
-protected:
-	string name_s;
-	double price;
-	int thing;
-	double all_price;
-	int your_thing = 0;
+
 public:
-	Soap() { name_s = price = thing = 0; }
-	Soap(string name_s, double price, int thing);
+	Soap() { }
+	Soap(string name_s, double price, double weight);
 	void Print() override;
 	void Sale() override;
 	void best_before_date(int now_day, int now_month) override;
@@ -130,16 +112,9 @@ public:
 
 class Toothpaste : public Household_chemicals
 {
-protected:
-	string name_s;
-	double price;
-	int thing;
-	double all_price;
-	int your_thing = 0;
-
 public:
-	Toothpaste() { name_s = price = thing = 0; }
-	Toothpaste(string name_s, double price, int thing);
+	Toothpaste() {}
+	Toothpaste(string name_s, double price, double weight);
 	void Print() override;
 	void Sale() override;
 	void best_before_date(int now_day, int now_month) override;
@@ -162,11 +137,12 @@ public:
 	int Get_month() { return month; }
 	void offfstream(string str);
 	void ifffstream(string str);
-	/*friend ostream& operator<<(ostream& os, Shop& st)
+	friend ostream& operator<<(ostream& os, Commodity& sh)
 	{
-		os << st.day << st.month << st.years;
+		os << sh.name_s << sh.price << sh.weight << sh.all_price
+			<< sh.day << sh.month << sh.years;
 		return os;
-	}*/
+	}
 };
 
 void frame();

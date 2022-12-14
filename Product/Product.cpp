@@ -161,17 +161,17 @@ void Salat::best_before_date(int now_day, int now_month)
 	}
 }
 
-Shampoo::Shampoo(string name_s, double price, int thing)
+Shampoo::Shampoo(string name_s, double price, double weight)
 {
 	this->name_s = name_s;
 	this->price = price;
-	this->thing = thing;
+	this->weight = weight;
 }
 
 void Shampoo::Print()
 {
-	all_price = price * thing;
-	cout << name_s << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "7 monthes\t";
+	all_price = price * weight;
+	cout << name_s << "\t" << price << " $ " << "\t" << weight << " th.\t   " << all_price << " $\t" << "7 monthes\t";
 }
 
 void Shampoo::Sale()
@@ -179,15 +179,15 @@ void Shampoo::Sale()
 	cout << "Enter the thing of the item you are going to buy" << endl;
 	do
 	{
-		if (thing < 0)
-			thing += your_thing;
-		cin >> your_thing;
-		thing -= your_thing;
+		if (weight < 0)
+			weight += your_weight;
+		cin >> your_weight;
+		weight -= your_weight;
 		try
 		{
-			if (thing < 0)
+			if (weight < 0)
 				throw exception("So many items in the store, enter another weight");
-			cout << "Price your purchase - " << your_thing * price << " $" << endl;
+			cout << "Price your purchase - " << your_weight * price << " $" << endl;
 			cout << "After buy shop have" << endl;
 			Print();
 		}
@@ -195,7 +195,7 @@ void Shampoo::Sale()
 		{
 			cout << str.what() << endl;
 		}
-	} while (thing < 0);
+	} while (weight < 0);
 }
 
 void Shampoo::best_before_date(int now_day, int now_month)
@@ -235,17 +235,17 @@ void Shampoo::best_before_date(int now_day, int now_month)
 	
 }
 
-Soap::Soap(string name_s, double price, int thing)
+Soap::Soap(string name_s, double price, double weight)
 {
 	this->name_s = name_s;
 	this->price = price;
-	this->thing = thing;
+	this->weight = weight;
 }
 
 void Soap::Print()
 {
-	all_price = price * thing;
-	cout << name_s << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "8 monthes\t";
+	all_price = price * weight;
+	cout << name_s << "\t" << price << " $ " << "\t" << weight << " th.\t   " << all_price << " $\t" << "8 monthes\t";
 }
 
 void Soap::Sale()
@@ -253,15 +253,15 @@ void Soap::Sale()
 	cout << "Enter the thing of the item you are going to buy" << endl;
 	do
 	{
-		if (thing < 0)
-			thing += your_thing;
-		cin >> your_thing;
-		thing -= your_thing;
+		if (weight < 0)
+			weight += your_weight;
+		cin >> your_weight;
+		weight -= your_weight;
 		try
 		{
-			if (thing < 0)
+			if (weight < 0)
 				throw exception("So many items in the store, enter another weight");
-			cout << "Price your purchase - " << your_thing * price << " $" << endl;
+			cout << "Price your purchase - " << your_weight * price << " $" << endl;
 			cout << "After buy shop have" << endl;
 			Print();
 		}
@@ -269,7 +269,7 @@ void Soap::Sale()
 		{
 			cout << str.what() << endl;
 		}
-	} while (thing < 0);
+	} while (weight < 0);
 }
 
 void Soap::best_before_date(int now_day, int now_month)
@@ -307,17 +307,17 @@ void Soap::best_before_date(int now_day, int now_month)
 	
 }
 
-Toothpaste::Toothpaste(string name_s, double price, int thing)
+Toothpaste::Toothpaste(string name_s, double price, double weight)
 {
 	this->name_s = name_s;
 	this->price = price;
-	this->thing = thing;
+	this->weight = weight;
 }
 
 void Toothpaste::Print()
 {
-	all_price = price * thing;
-	cout << name_s << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "6 monthes\t";
+	all_price = price * weight;
+	cout << name_s << "\t" << price << " $ " << "\t" << weight << " th.\t   " << all_price << " $\t" << "6 monthes\t";
 }
 
 void Toothpaste::Sale()
@@ -325,15 +325,15 @@ void Toothpaste::Sale()
 	cout << "Enter the thing of the item you are going to buy" << endl;
 	do
 	{
-		if (thing < 0)
-			thing += your_thing;
-		cin >> your_thing;
-		thing -= your_thing;
+		if (weight < 0)
+			weight += your_weight;
+		cin >> your_weight;
+		weight -= your_weight;
 		try
 		{
-			if (thing < 0)
+			if (weight < 0)
 				throw exception("So many items in the store, enter another weight");
-			cout << "Price your purchase - " << your_thing * price << " $" << endl;
+			cout << "Price your purchase - " << your_weight * price << " $" << endl;
 			cout << "After buy shop have" << endl;
 			Print();
 		}
@@ -341,7 +341,7 @@ void Toothpaste::Sale()
 		{
 			cout << str.what() << endl;
 		}
-	} while (thing < 0);
+	} while (weight < 0);
 }
 
 void Toothpaste::best_before_date(int now_day, int now_month)
@@ -510,13 +510,6 @@ void Shop::ifffstream(string str)
 {
 	ifstream fin;
 	Shop array;
-	/*Commodity** array = new Commodity *[_size];
-	array[0] = new Tomatos;
-	array[1] = new Cucumber;
-	array[2] = new Salat;
-	array[3] = new Shampoo;
-	array[4] = new Soap;
-	array[5] = new Toothpaste;*/
 	fin.open(str);
 	try
 	{
@@ -524,12 +517,6 @@ void Shop::ifffstream(string str)
 			throw exception("File is not open");
 		else
 		{
-			/*while (fin.read((char*)&array[i], sizeof(Commodity)))
-			{
-				array[i]->Print();
-				array[i]->Show_Date();
-				i++;
-			}*/
 			for (string l; getline(fin, l);)
 			{
 				array.Print();
