@@ -1,9 +1,9 @@
 #include "Product.h"
 
 
-Tomatos::Tomatos(string name, double price, double weight)
+Tomatos::Tomatos(string name_s, double price, double weight)
 {
-	this->name = name;
+	this->name_s = name_s;
 	this->price = price;
 	this->weight = weight;
 }
@@ -11,7 +11,7 @@ Tomatos::Tomatos(string name, double price, double weight)
 void Tomatos::Print()
 {
 	all_price = price * weight;
-	cout << name << "\t" << price << " $ " << "\t" << weight << " kg.  " << all_price << " $\t" << "6 days\t\t";
+	cout << name_s << "\t" << price << " $ " << "\t" << weight << " kg.  " << all_price << " $\t" << "6 days\t\t";
 }
 
 void Tomatos::Sale()
@@ -71,9 +71,9 @@ void Cucumber::best_before_date(int now_day, int now_month)
 	}
 }
 
-Cucumber::Cucumber(string name, double price, double weight)
+Cucumber::Cucumber(string name_s, double price, double weight)
 {
-	this->name = name;
+	this->name_s = name_s;
 	this->price = price;
 	this->weight = weight;
 }
@@ -105,12 +105,12 @@ void Cucumber::Sale()
 void Cucumber::Print()
 {
 	all_price = price * weight;
-	cout << name << "\t" << price << " $ " << "\t" << weight << " kg.  " << all_price << " $\t" << "12 days\t\t";
+	cout << name_s << "\t" << price << " $ " << "\t" << weight << " kg.  " << all_price << " $\t" << "12 days\t\t";
 }
 
-Salat::Salat(string name, double price, double weight)
+Salat::Salat(string name_s, double price, double weight)
 {
-	this->name = name;
+	this->name_s = name_s;
 	this->price = price;
 	this->weight = weight;
 }
@@ -118,7 +118,7 @@ Salat::Salat(string name, double price, double weight)
 void Salat::Print()
 {
 	all_price = price * weight;
-	cout << name << "\t" << price << " $ " << "\t" << weight << " kg.  " << all_price << " $\t" << "7 days\t\t";
+	cout << name_s << "\t" << price << " $ " << "\t" << weight << " kg.  " << all_price << " $\t" << "7 days\t\t";
 }
 
 void Salat::Sale()
@@ -161,9 +161,9 @@ void Salat::best_before_date(int now_day, int now_month)
 	}
 }
 
-Shampoo::Shampoo(string name, double price, int thing)
+Shampoo::Shampoo(string name_s, double price, int thing)
 {
-	this->name = name;
+	this->name_s = name_s;
 	this->price = price;
 	this->thing = thing;
 }
@@ -171,7 +171,7 @@ Shampoo::Shampoo(string name, double price, int thing)
 void Shampoo::Print()
 {
 	all_price = price * thing;
-	cout << name << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "7 monthes\t";
+	cout << name_s << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "7 monthes\t";
 }
 
 void Shampoo::Sale()
@@ -235,9 +235,9 @@ void Shampoo::best_before_date(int now_day, int now_month)
 	
 }
 
-Soap::Soap(string name, double price, int thing)
+Soap::Soap(string name_s, double price, int thing)
 {
-	this->name = name;
+	this->name_s = name_s;
 	this->price = price;
 	this->thing = thing;
 }
@@ -245,7 +245,7 @@ Soap::Soap(string name, double price, int thing)
 void Soap::Print()
 {
 	all_price = price * thing;
-	cout << name << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "8 monthes\t";
+	cout << name_s << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "8 monthes\t";
 }
 
 void Soap::Sale()
@@ -307,9 +307,9 @@ void Soap::best_before_date(int now_day, int now_month)
 	
 }
 
-Toothpaste::Toothpaste(string name, double price, int thing)
+Toothpaste::Toothpaste(string name_s, double price, int thing)
 {
-	this->name = name;
+	this->name_s = name_s;
 	this->price = price;
 	this->thing = thing;
 }
@@ -317,7 +317,7 @@ Toothpaste::Toothpaste(string name, double price, int thing)
 void Toothpaste::Print()
 {
 	all_price = price * thing;
-	cout << name << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "6 monthes\t";
+	cout << name_s << "\t" << price << " $ " << "\t" << thing << " th.\t   " << all_price << " $\t" << "6 monthes\t";
 }
 
 void Toothpaste::Sale()
@@ -509,23 +509,31 @@ void Shop::offfstream(string str)
 void Shop::ifffstream(string str)
 {
 	ifstream fin;
-	Ñommodity** array = new Ñommodity * [_size];
-	fin.open(str, ios::in | ios::binary);
+	Shop array;
+	/*Commodity** array = new Commodity *[_size];
+	array[0] = new Tomatos;
+	array[1] = new Cucumber;
+	array[2] = new Salat;
+	array[3] = new Shampoo;
+	array[4] = new Soap;
+	array[5] = new Toothpaste;*/
+	fin.open(str);
 	try
 	{
 		if (!fin.is_open())
 			throw exception("File is not open");
 		else
 		{
-			int i = 0;
-			cout << "File is open" << endl;
-			while (fin.read((char*)&array[i], sizeof(Ñommodity)))
+			/*while (fin.read((char*)&array[i], sizeof(Commodity)))
 			{
 				array[i]->Print();
 				array[i]->Show_Date();
 				i++;
+			}*/
+			for (string l; getline(fin, l);)
+			{
+				array.Print();
 			}
-			cout << "End of read" << endl;
 			fin.close();
 		}
 	}
@@ -575,7 +583,7 @@ void Household_chemicals::Show_Date()
 void frame()
 {
 	cout << "*********************************************************************************" << endl;
-	cout << "|| Name        ||Price||Weight||  All Price   ||Best before ||Date of delivery ||" << endl;
+	cout << "|| name        ||Price||Weight||  All Price   ||Best before ||Date of delivery ||" << endl;
 	cout << "*********************************************************************************" << endl;
 
 }

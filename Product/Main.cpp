@@ -30,11 +30,11 @@ int main()
 
 				if (active_menu == 0)
 				{
-					system("cls");
+					/*system("cls");
 					frame();
 					shops.Print();
-					shops.offfstream("Print_shops.txt");
-					//shops.ifffstream("Print_shops.txt");
+					shops.offfstream("Print_shops.txt");*/
+					shops.ifffstream("Print_shops.txt");
 					system("pause");
 				}
 				else if (active_menu == 1)
